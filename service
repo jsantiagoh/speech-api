@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+operation=$1
+shift
+
+docker_build() {
+  docker build  -t voice-service .
+}
+
+docker_run() {
+  docker run -it -e WIT_ACCESS_TOKEN -p 3000:3000 --rm --name voice-1 voice-service
+}
+
+case "$operation" in
+  docker)
+    docker_build
+    docker_run
+    ;;
+  *)
+    echo "Invalid operation: $operation"
+    exit 1
+    ;;
+esac
