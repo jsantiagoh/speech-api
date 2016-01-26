@@ -4,7 +4,7 @@ set -e
 operation=$1
 shift
 
-DOCKER_REGISTRY=tutum.co/hirschfeld/speech
+DOCKER_REGISTRY=
 
 docker_build() {
   docker build  -t speech-api .

@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require('express')
 const app = express()
 const wit = require('node-wit')
@@ -11,7 +13,7 @@ if (!ACCESS_TOKEN) {
 
 function witResponder(res, label) {
   const startedAt = Date.now()
-  return function(err, witres) {
+  return (err, witres) => {
     if (err) {
       res.status(500).send(err)
     } else {
@@ -22,15 +24,13 @@ function witResponder(res, label) {
   }
 }
 
-app.get('/v1/text/', function(req, res) {
+app.get('/v1/text/', (req, res) => {
   const q = req.query.q
   wit.captureTextIntent(ACCESS_TOKEN, q, witResponder(res, "/text"))
 })
 
-app.post('/v1/speech/', function(req, res) {
+app.post('/v1/speech/', (req, res) => {
   wit.captureSpeechIntent(ACCESS_TOKEN, req, "audio/wav", witResponder(res, "/speech"))
 })
 
-app.listen(3000, function() {
-  console.log('listening on port 3000.')
-})
+app.listen(3000, () => console.log('listening on port 3000.'))
