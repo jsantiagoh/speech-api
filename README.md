@@ -12,6 +12,9 @@ A very simple interface for speech recognition. This first version just uses [Wi
 ## Record audio using the console
 `sox -d -b 16 -c 1 -r 16k amy_short.wav` just press `CTRL-C` when done
 
+## HTTP Requests
+Look at [httpie](https://github.com/jkbrzt/httpie) as a replacement of curl to maintain your sanity.
+
 # API
 ## Speech
 ```
