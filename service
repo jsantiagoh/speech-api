@@ -5,11 +5,11 @@ operation=$1
 shift
 
 docker_build() {
-  docker build  -t voice-service .
+  docker build  -t speech-api .
 }
 
 docker_run() {
-  docker run -it -e WIT_ACCESS_TOKEN -p 3000:3000 --rm --name voice-1 voice-service
+  docker run -it -e WIT_ACCESS_TOKEN -p 3000:3000 --rm --name speech-api-1 speech-api
 }
 
 case "$operation" in

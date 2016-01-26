@@ -1,7 +1,7 @@
 {
-  "name": "voice-service",
+  "name": "speech-api",
   "version": "0.0.1",
-  "description": "Center Voice Service",
+  "description": "Speech Recognition API",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
