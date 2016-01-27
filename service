@@ -4,7 +4,15 @@ set -e
 operation=$1
 shift
 
-DOCKER_REGISTRY=
+if ! [ -x "$(command -v jq)" ]; then
+    echo "Install https://stedolan.github.io/jq"
+    exit 1
+fi
+
+DOCKER_REGISTRY=`jq -r '.dockerRegistry' < local.json`
+ACCESS_TOKEN=`jq -r '.witAccessToken' < local.json`
+
+echo "Registry at : $DOCKER_REGISTRY"
 
 docker_build() {
   docker build  -t speech-api .
@@ -15,11 +23,12 @@ docker_tag() {
 }
 
 docker_push() {
+  echo "Pushing to $DOCKER_REGISTRY"
   docker push $DOCKER_REGISTRY
 }
 
 docker_run() {
-  docker run -it -e WIT_ACCESS_TOKEN -p 3000:3000 --rm --name speech-api-1 speech-api
+  WIT_ACCESS_TOKEN=$ACCESS_TOKEN docker run -it -e WIT_ACCESS_TOKEN -p 3000:3000 --rm --name speech-api-1 speech-api
 }
 
 case "$operation" in

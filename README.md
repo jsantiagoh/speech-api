@@ -5,8 +5,15 @@ A very simple interface for speech recognition. This first version just uses [Wi
 - Docker environment running
 
 # Instructions
-- Set WIT_ACCESS_TOKEN environment variable to contain the Wit.ai token
 - Use `./service` to build and run a container with the app
+  - Create a file named `local.json` with the values for the Wit.ai access token and docker registry to use, such as:
+  ```
+  {
+    "witAccessToken" : "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "dockerRegistry" : "myuser/speech"
+  }
+  ```
+
 
 # Tips
 ## Record audio using the console
